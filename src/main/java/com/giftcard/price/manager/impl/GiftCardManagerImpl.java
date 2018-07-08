@@ -1,8 +1,9 @@
 package com.giftcard.price.manager.impl;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,13 +14,17 @@ public class GiftCardManagerImpl implements GiftCardManager {
 
 	private static final String NOT_POSSIBLE = "Not possible";
 
-	/* (non-Javadoc)
-	 * @see com.giftcard.price.manager.impl.GiftCardManager#findPair(java.lang.String, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.giftcard.price.manager.impl.GiftCardManager#findPair(java.lang.String,
+	 * int)
 	 */
 	@Override
-	public String findPair(String file, int target) throws IOException {
+	public String findPair(InputStream inputStream, int target) throws IOException {
 
-		Map<Integer, Gift> gifts = readFile(file);
+		Map<Integer, Gift> gifts = readFile(inputStream);
 		int tmpMax = 0;
 		int right = gifts.size() - 1;
 		int left = 0;
@@ -55,18 +60,17 @@ public class GiftCardManagerImpl implements GiftCardManager {
 		return g1.toString() + ", " + g2.toString();
 	}
 
-	private Map<Integer, Gift> readFile(String file) throws IOException {
+	private Map<Integer, Gift> readFile(InputStream inputStream) throws IOException {
 		Map<Integer, Gift> result = new HashMap<>();
-		BufferedReader br = new BufferedReader(new FileReader(file));
-
-		String sCurrentLine;
 		int counter = 0;
-		while ((sCurrentLine = br.readLine()) != null) {
-			String[] tmpArr = sCurrentLine.split(",");
-			result.put(counter, new Gift(tmpArr[0], Integer.parseInt(tmpArr[1].trim())));
-			counter++;
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] tmpArr = line.split(",");
+				result.put(counter, new Gift(tmpArr[0], Integer.parseInt(tmpArr[1].trim())));
+				counter++;
+			}
 		}
-		br.close();
 		return result;
 	}
 
