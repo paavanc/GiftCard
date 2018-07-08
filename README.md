@@ -30,7 +30,7 @@ This solution runs in O(n) and has the same space complexity.  We iterate throug
 we find the best combination.
 
 Assumptions:
-Assume the file and target are the right formats and in order.
+Assume the file and target are in the right formats and in order.
 
 Important files:
 /src/main/java/com/giftcard/price/manager/impl/GiftCardManagerImpl.java - source code
