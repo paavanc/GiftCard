@@ -3,7 +3,7 @@ Running Locally:
 
 Pre-req: Java8 and Maven3
 
-Installation for mac:
+#### Installation for mac:
 
 1. Install HomeBrew:
 
@@ -25,15 +25,15 @@ Installation for mac:
 
     1. ```mvn package```
 
-       * this command runs all the tests and package up a jar in the GiftCard/target directory
+       * This command runs all the tests and package up a jar in the GiftCard/target directory.
 
     2. cd into GiftCard/target 
 
-    3. run the command:  ``` java -jar price-0.0.1-SNAPSHOT.jar /Your/local/path/prices.txt 2500 ```
+    3. Run the command:  ``` java -jar price-0.0.1-SNAPSHOT.jar /Your/local/path/prices.txt 2500 ```
 
-        * the first argument is the text file, the second is an int representing the target
+        * The first argument is the text file, the second is an int representing the target.
   
-Example:
+#### Example:
 
 ```
 prices.txt
@@ -49,16 +49,16 @@ Candy Bar 500, Earmuffs 2000
 
 ```
 
-Performance:
+#### Performance:
 
 This solution runs in O(n) and has the same space complexity.  We iterate through all the lines of the file until
 we find the best combination.
 
-Assumptions:
+#### Assumptions:
 
 Assume the file and target are in the right formats and in order.
 
-Important files:
+#### Important files:
 
 * /src/main/java/com/giftcard/price/manager/impl/GiftCardManagerImpl.java - source code
 * /src/test/java/com/giftcard/price/PriceApplicationTests.java - tests
