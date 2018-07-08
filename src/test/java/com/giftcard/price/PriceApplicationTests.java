@@ -1,7 +1,5 @@
 package com.giftcard.price;
 
-
-
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
@@ -10,8 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.giftcard.price.manager.impl.GiftCardManagerImpl;
 
@@ -19,7 +15,7 @@ import com.giftcard.price.manager.impl.GiftCardManagerImpl;
 public class PriceApplicationTests {
 
 	ClassLoader classLoader = getClass().getClassLoader();
-	
+
 	private static final String FILE = "prices.txt";
 	private static final int INPUT_ONE = 2500;
 	private static final int INPUT_TWO = 2300;
@@ -31,7 +27,6 @@ public class PriceApplicationTests {
 	private static final String RESULT_THREE = "Earmuffs 2000, Bluetooth Stereo 6000";
 	private static final String RESULT_FOUR = "Not possible";
 
-
 	@InjectMocks
 	private GiftCardManagerImpl giftCardManager;
 
@@ -39,16 +34,19 @@ public class PriceApplicationTests {
 	public void testExact() throws IOException {
 		assertEquals(RESULT_ONE, giftCardManager.findPair(classLoader.getResourceAsStream(FILE), INPUT_ONE));
 	}
+
 	@Test
 	public void testApproximateOne() throws IOException {
 		assertEquals(RESULT_TWO, giftCardManager.findPair(classLoader.getResourceAsStream(FILE), INPUT_TWO));
 
 	}
+
 	@Test
 	public void testApproximateTwo() throws IOException {
 		assertEquals(RESULT_THREE, giftCardManager.findPair(classLoader.getResourceAsStream(FILE), INPUT_THREE));
 
 	}
+
 	@Test
 	public void testNotPossible() throws IOException {
 		assertEquals(RESULT_FOUR, giftCardManager.findPair(classLoader.getResourceAsStream(FILE), INPUT_FOUR));

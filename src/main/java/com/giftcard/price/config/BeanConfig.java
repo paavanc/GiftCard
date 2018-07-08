@@ -8,7 +8,7 @@ import com.giftcard.price.manager.impl.GiftCardManagerImpl;
 
 @Configuration
 public class BeanConfig {
-	
+
 	@Bean
 	GiftCardManager getGiftCardManager() {
 		return new GiftCardManagerImpl();
