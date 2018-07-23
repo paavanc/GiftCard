@@ -4,8 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 import com.giftcard.price.manager.GiftCardManager;
 import com.giftcard.price.vo.Gift;
@@ -13,6 +17,51 @@ import com.giftcard.price.vo.Gift;
 public class GiftCardManagerImpl implements GiftCardManager {
 
 	private static final String NOT_POSSIBLE = "Not possible";
+
+	private static final String SPACE = " ";
+
+	private static final String INPUT = "   hello   world   ";
+	private static final String OUTPUT = "   olleh   dlrow   ";
+
+	public static void main(String [] args) {
+		System.out.println(OUTPUT.equals(reverseStringSpaceInTact(INPUT)));
+	}
+	
+
+	public static String reverseStringSpaceInTact(String input) {
+
+		String[] inputArr = input.split("");
+		String[] wordArr = input.split(SPACE);
+		System.out.println(Arrays.toString(inputArr));
+		System.out.println(Arrays.toString(wordArr));
+		List<String> innerWord = new ArrayList<>();
+		for (int i = 0; i < wordArr.length; i++) {
+			if(!wordArr[i].equals(SPACE) && !wordArr[i].isEmpty()) {
+			List<String> newString = new ArrayList<>();
+			String[] charrArr = wordArr[i].split("");
+			for (int j = charrArr.length - 1; j >= 0; j--) {
+				newString.add(charrArr[j]);
+			}
+			innerWord.addAll(newString);
+			}
+		}
+
+		System.out.println(innerWord);
+		List<String> result = new ArrayList<>();
+		int counter = 0;
+		for (int i = 0; i < inputArr.length; i++) {
+
+			if (inputArr[i].equals(SPACE)) {
+				result.add(inputArr[i]);
+			} else {
+				result.add(innerWord.get(counter));
+				counter++;
+			}
+		}
+
+		return String.join("", result);
+
+	}
 
 	/*
 	 * (non-Javadoc)
